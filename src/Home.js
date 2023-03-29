@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet, Pressable } from 'react-native'
 import React, { useState, useEffect} from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { firebase } from '../config'
@@ -31,12 +31,14 @@ const Home = () => {
         estimatedItemSize={100}
         renderItem={({item}) => (
           <View style={styles.noteView}>
+            <Pressable onPress={() => navigation.navigate('Detail', {item})}>
             <Text style={styles.noteTitle}>
               {item.title}
             </Text>
             <Text style={styles.noteDescription}>
               {item.note}
             </Text>
+            </Pressable>
           </View>
         )}
       />

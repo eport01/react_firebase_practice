@@ -35,6 +35,7 @@ const NoteAdd = () => {
         value={note}
         onChangeText={(text) => setNote(text)}
         style={styles.inputNote}
+        multiline={true}
       />
       <TouchableOpacity style={styles.button} onPress={handleAdd}>
         <Text style={styles.buttonText}>
