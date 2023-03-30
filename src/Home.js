@@ -1,8 +1,9 @@
-import { View, Text, Button, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect} from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { firebase } from '../config'
 import { FlashList } from '@shopify/flash-list'
+import { Entypo } from '@expo/vector-icons'
 
 
 const Home = () => {
@@ -20,7 +21,7 @@ const Home = () => {
         const {note, title} = doc.data();
         newNotes.push({note, title, id: doc.id});
       });
-      setNotes(newNotes);
+      setNotes(newNotes)
     });
   }, []);
   return(
@@ -42,7 +43,13 @@ const Home = () => {
           </View>
         )}
       />
-    <Button title='Add Item' onPress={ () => navigation.navigate('NoteAdd')}/>
+  <TouchableOpacity 
+    style={styles.button}
+    onPress={() => navigation.navigate('NoteAdd')}
+  >
+    <Entypo name='plus' size={45} color='black' />
+
+  </TouchableOpacity>
     </View>
   )
 }
@@ -74,5 +81,14 @@ const styles = StyleSheet.create({
   noteDescription: {
     fontSize:16,
     marginTop:5
+  },
+  button:{
+    position: 'absolute',
+    bottom:60,
+    right:30,
+    backgroundColor: 'white',
+    borderRadius:50,
+    padding:10,
+    elevation:7
   }
 })
